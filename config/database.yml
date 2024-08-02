@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: dpg-cqmevvpu0jms73fs13fg-a.oregon-postgres.render.com
+  username: marcio
+  password: o4jAoDP5Sc601R7ZiNpDofL35q9p8UmC
+
+development:
+  <<: *default
+  database: marcio
+
+test:
+  <<: *default
+  database: auth_service_test
+
+production:
+  <<: *default
+  database: auth_service_production
+  username: <%= ENV["AUTH_SERVICE_DATABASE_USERNAME"] %>
+  password: <%= ENV["AUTH_SERVICE_DATABASE_PASSWORD"] %>
+  host: <%= ENV["AUTH_SERVICE_DATABASE_HOST"] %>
+  port: <%= ENV["AUTH_SERVICE_DATABASE_PORT"] %>
