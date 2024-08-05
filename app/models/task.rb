@@ -1,5 +1,4 @@
 class Task < ApplicationRecord
   belongs_to :user
-  validates :title, presence: true
-  validates :description, presence: true
+  include Validations::TaskValidations
 end

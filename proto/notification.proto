@@ -13,8 +13,11 @@ message NotificationRequest {
 
 service NotificationService {
   rpc SendNotification(NotificationRequest) returns (NotificationResponse);
+  rpc SendWebscrapingNotification (WebscrapingNotificationRequest) returns (NotificationResponse);
 }
-
+message WebscrapingNotificationRequest {
+  string message = 1;
+}
 message NotificationResponse {
   bool success = 1;
   string message = 2;
