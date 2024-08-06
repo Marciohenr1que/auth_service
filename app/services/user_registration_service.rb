@@ -5,7 +5,7 @@ class UserRegistrationService
   
     def call
       user = User.new(@user_params)
-      user.unique_id = SecureRandom.uuid
+      
       if user.save
         { success: true, user: user }
       else
