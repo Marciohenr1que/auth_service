@@ -2,7 +2,7 @@
 # Source: notification.proto for package 'notification'
 
 require 'grpc'
-require 'notification_pb'
+require_relative '../lib/notification_pb'
 
 module Notification
   module NotificationService
