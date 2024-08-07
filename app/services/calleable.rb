@@ -1,5 +1,9 @@
 module Calleable
-    def call(email, password)
-      new(email, password).call
-    end
+  def call(*args, **kargs)
+    new(*args, **kargs).call
   end
+
+  def call!(*args, **kargs)
+    new(*args, **kargs).call!
+  end
+end
