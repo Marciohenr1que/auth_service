@@ -6,7 +6,7 @@ RSpec.describe TasksController, type: :controller do
 
   before do
     # Autentica o user
-    token = JsonWebToken.encode(user_id: user.id)
+    token = Auth::TokenExtractHelper.encode(user_id: user.id)
     request.headers['Authorization'] = "Bearer #{token}"
   end
 

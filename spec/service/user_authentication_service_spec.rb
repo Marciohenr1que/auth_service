@@ -16,7 +16,7 @@ RSpec.describe UserAuthenticationService, type: :service do
         expect(result[:success]).to be true
         expect(result[:user]).to eq(user)
         expect(result[:token]).to be_present
-        decoded_token = JsonWebToken.decode(result[:token])
+        decoded_token = Auth::TokenExtractHelper.decode(result[:token])
         expect(decoded_token[:user_id]).to eq(user.id)
       end
     end

@@ -9,7 +9,7 @@ class UserAuthenticationService
 
   def call
     if @user && @user.authenticate(@password)
-      token = TokenExtractHelper.encode(user_id: @user.id)
+      token = Auth::TokenExtractHelper.encode(user_id: @user.id)
       { success: true, token: token, user: @user }
     else
       { success: false, errors: ["Invalid email or password"] }

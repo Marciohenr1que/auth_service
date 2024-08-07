@@ -52,7 +52,7 @@ class TasksController < ApplicationController
 
   def authenticate_user!
     token = request.headers['Authorization'].to_s.split(' ').last
-    decoded_token = JsonWebToken.decode(token)
+    decoded_token = Auth::TokenExtractHelper.decode(token)
 
     if decoded_token
       @current_user = User.find(decoded_token[:user_id])

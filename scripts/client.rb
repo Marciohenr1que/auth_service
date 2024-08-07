@@ -12,7 +12,7 @@ class AuthService < Auth::AuthService::Service
     
     # Lógica para validar o token
     begin
-      decoded_token = JsonWebToken.decode(token)
+      decoded_token = Auth::TokenExtractHelper.decode(token)
       valid = decoded_token.present?
       user_id = valid ? decoded_token[:user_id] : ""
     rescue => e
