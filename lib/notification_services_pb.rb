@@ -15,7 +15,8 @@ module Notification
       self.service_name = 'notification.NotificationService'
 
       rpc :SendNotification, ::Notification::NotificationRequest, ::Notification::NotificationResponse
-      rpc :SendWebscrapingNotification, ::Notification::WebscrapingNotificationRequest, ::Notification::NotificationResponse
+      rpc :SendWebscrapingNotification, ::Notification::WebscrapingNotificationRequest, 
+          ::Notification::NotificationResponse
     end
 
     Stub = Service.rpc_stub_class
