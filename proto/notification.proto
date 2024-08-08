@@ -3,12 +3,14 @@ syntax = "proto3";
 package notification;
 
 message NotificationRequest {
-  string task_id = 1;
-  string task_title = 2;
-  string task_description = 3;
-  string user_id = 4;
-  string user_email = 5;
-  string action = 6;
+  string action = 1;
+  string user_id = 2;
+  string user_email = 3;
+  string task_id = 4;
+  string task_title = 5;
+  string task_description = 6;
+   
+  
 }
 
 service NotificationService {
