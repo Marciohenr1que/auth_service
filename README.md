@@ -1,69 +1,88 @@
-Documentação do Microserviço de Autenticação
-Visão Geral
-O Microserviço de Autenticação é um componente de um sistema maior, responsável pelo gerenciamento da autenticação de usuários. Este serviço fornece autenticação baseada em JWT e gerencia a criação, validação e gerenciamento de senhas dos usuários. Ele se comunica com um banco de dados PostgreSQL para armazenamento persistente e usa gRPC para comunicação entre serviços com um microserviço de notificação.
+# Microserviço de Autenticação
 
-Funcionalidades
-Autenticação de Usuário: Utiliza JWT para autenticação segura.
-Gerenciamento de Usuários: Gerencia a criação e validação de usuários.
-Gerenciamento de Tarefas: Gerencia a criação e validação de tarefas.
-Banco de Dados: Armazena dados no PostgreSQL.
-Serviço de Notificação: Notifica outros serviços via gRPC.
-Arquitetura
-O serviço utiliza Arquitetura Hexagonal (Portas e Adaptadores) para garantir uma separação limpa entre a lógica de negócios central e as preocupações externas. A lógica central é cercada por adaptadores para o banco de dados, a web e os serviços de notificação.
+O Microserviço de Autenticação é um componente essencial que gerencia a autenticação de usuários em um sistema distribuído. Ele usa JWT para autenticação segura, interage com um banco de dados PostgreSQL para persistência de dados e comunica-se com outros serviços via gRPC para notificações.
 
-Modelos
-Usuário
-Validações
-Nome: Campo obrigatório.
-Email: Obrigatório e único.
-Senha: Obrigatória, com no mínimo 5 caracteres.
-Confirmação de Senha: Obrigatória e deve corresponder à senha.
-Mensagens de Erro
-name: "não pode ficar em branco"
-email: "não pode ficar em branco", "já está em uso"
-password: "não pode ficar em branco", "deve ter pelo menos 5 caracteres"
-password_confirmation: "não pode ficar em branco", "não confere com a senha"
-Tarefa
-Validações
-Título: Campo obrigatório.
-Descrição: Campo obrigatório.
-Mensagens de Erro
-title: "não pode ficar em branco"
-description: "não pode ficar em branco"
-Configuração
-Pré-requisitos
-Docker
-Docker Compose
-1. Construir Imagem Docker
-Construa a imagem Docker para o serviço de autenticação:
+## Funcionalidades
 
-bash
-Copiar código
+- **Autenticação de Usuário**: Autentica usuários utilizando JWT.
+- **Gerenciamento de Usuários**: Criação e validação de usuários.
+- **Gerenciamento de Tarefas**: Criação e validação de tarefas.
+- **Banco de Dados**: Armazenamento de dados em PostgreSQL.
+- **Serviço de Notificação**: Comunicação via gRPC com outros microserviços.
+
+## Arquitetura
+
+Utiliza **Arquitetura Hexagonal (Portas e Adaptadores)** para uma separação clara entre a lógica de negócios e os serviços externos. Adota o padrão de **Pattern Callable** para serviços, promovendo uma estrutura modular e escalável.
+
+## Modelos
+
+### Usuário
+
+#### Validações
+
+- **Nome**: Campo obrigatório.
+- **Email**: Obrigatório e único.
+- **Senha**: Obrigatória, com no mínimo 5 caracteres.
+- **Confirmação de Senha**: Obrigatória e deve corresponder à senha.
+
+#### Mensagens de Erro
+
+- `name`: "não pode ficar em branco"
+- `email`: "não pode ficar em branco", "já está em uso"
+- `password`: "não pode ficar em branco", "deve ter pelo menos 5 caracteres"
+- `password_confirmation`: "não pode ficar em branco", "não confere com a senha"
+
+### Tarefa
+
+#### Validações
+
+- **Título**: Campo obrigatório.
+- **Descrição**: Campo obrigatório.
+
+#### Mensagens de Erro
+
+- `title`: "não pode ficar em branco"
+- `description`: "não pode ficar em branco"
+
+## Configuração
+
+### Pré-requisitos
+
+- Docker
+- Docker Compose
+
+### Comandos
+
+#### Construir Imagem Docker
+
+Para construir a imagem Docker do serviço de autenticação:
+
+```bash
 docker build -t my_auth_service .
-2. Iniciar PostgreSQL e Serviço de Autenticação
-Inicie o PostgreSQL e o serviço de autenticação usando o Docker Compose:
+Iniciar PostgreSQL e Serviço de Autenticação
+Inicie o PostgreSQL e o serviço de autenticação com Docker Compose:
 
 bash
 Copiar código
 docker-compose up
-3. Parar e Remover Contêineres, Redes e Volumes
-Para parar e remover todos os contêineres, redes e volumes criados pelo Docker Compose, use:
+Parar e Remover Contêineres, Redes e Volumes
+Para parar e remover todos os contêineres, redes e volumes criados:
 
 bash
 Copiar código
 docker-compose down
-4. Executar o Serviço de Autenticação
-Para executar o serviço de autenticação localmente:
+Executar o Serviço de Autenticação
+Para rodar o serviço de autenticação localmente:
 
 bash
 Copiar código
 docker run -d --name auth_service -p 3000:3000 my_auth_service
 
 Comunicação entre Serviços
-Serviço de Notificação: Comunica-se via gRPC para notificações de tarefas.
+Serviço de Notificação: Comunicação via gRPC para notificações de tarefas.
 Desenvolvimento
 Executar Testes
-Para executar os testes do serviço de autenticação:
+Para executar os testes do serviço de autenticação, certifique-se de ter as dependências instaladas e execute:
 
 bash
 Copiar código
