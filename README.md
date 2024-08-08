@@ -1,4 +1,4 @@
-Microserviço de Autenticação
+Documentação do Microserviço de Autenticação
 Visão Geral
 O Microserviço de Autenticação é um componente de um sistema maior, responsável pelo gerenciamento da autenticação de usuários. Este serviço fornece autenticação baseada em JWT e gerencia a criação, validação e gerenciamento de senhas dos usuários. Ele se comunica com um banco de dados PostgreSQL para armazenamento persistente e usa gRPC para comunicação entre serviços com um microserviço de notificação.
 
@@ -46,3 +46,25 @@ Inicie o PostgreSQL e o serviço de autenticação usando o Docker Compose:
 bash
 Copiar código
 docker-compose up
+3. Parar e Remover Contêineres, Redes e Volumes
+Para parar e remover todos os contêineres, redes e volumes criados pelo Docker Compose, use:
+
+bash
+Copiar código
+docker-compose down
+4. Executar o Serviço de Autenticação
+Para executar o serviço de autenticação localmente:
+
+bash
+Copiar código
+docker run -d --name auth_service -p 3000:3000 my_auth_service
+
+Comunicação entre Serviços
+Serviço de Notificação: Comunica-se via gRPC para notificações de tarefas.
+Desenvolvimento
+Executar Testes
+Para executar os testes do serviço de autenticação:
+
+bash
+Copiar código
+rspec
