@@ -52,7 +52,10 @@ Utiliza **Arquitetura Hexagonal (Portas e Adaptadores)** para uma separação cl
 - Docker Compose
 
 ### Comandos
-
+- local
+- bundle install
+- rails server
+- lembrando verificar cors  ele aceita requisiçoes vindas do origins 'http://localhost:5173' front-end
 #### Construir Imagem Docker
 
 Para construir a imagem Docker do serviço de autenticação:
